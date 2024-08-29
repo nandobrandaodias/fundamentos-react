@@ -28,7 +28,7 @@ export default function Comments(){
             <FormComment addComment={addComment} />
 
             <div className="mt-12">
-                <h3>Comentários</h3>
+                <h3 className="text-2xl">Comentários ({comments.length})</h3>
                 {listComments}
             </div>
         </div>

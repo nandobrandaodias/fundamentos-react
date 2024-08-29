@@ -7,8 +7,10 @@ export default function FormComment({ addComment }) {
   const [textInput, setTextInput] = useState("");
 
   function newComment(){
-    let comment = {id: idx, text: textInput}
+    if(!textInput) return;
+    let comment = {id: idx, text: textInput};
     setId(idx+1);
+    setTextInput('');
     addComment(comment);
   }
 
