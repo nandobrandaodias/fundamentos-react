@@ -1,0 +1,12 @@
+.content p, .content a{
+    margin-bottom: 16px;
+}
+
+.content a{
+    color: #00B37E;
+    font-weight: bold;
+}
+
+.content a:hover{
+    color: #015f43;
+}
