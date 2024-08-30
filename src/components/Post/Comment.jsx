@@ -22,7 +22,6 @@ export default function CommentView({comment}){
     )
 }
 
-
 CommentView.propTypes = {
     comment: PropTypes.object
 }
