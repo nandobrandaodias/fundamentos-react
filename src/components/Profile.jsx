@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Profile() {
   return (
     <div className="bg-zinc-800 rounded">
@@ -23,10 +25,14 @@ export default function Profile() {
       </div>
       <hr className="border-zinc-600 my-5" />
       <div className="flex justify-center pb-6">
-        <button className="border-2 border-green-500 py-3 px-5 rounded-lg font-bold text-green-500
-        hover:bg-zinc-700">
-          Editar meu perfil
-        </button>
+        <Link to="/profile">
+          <button
+            className="border-2 border-green-500 py-3 px-5 rounded-lg font-bold text-green-500
+        hover:bg-zinc-700"
+          >
+            Acessar meu perfil
+          </button>
+        </Link>
       </div>
     </div>
   );
