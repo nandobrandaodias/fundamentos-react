@@ -6,7 +6,7 @@ export default function CommentView({comment}){
         <div className='flex my-12 gap-x-4'>
             <div className='w-1/12'>
             <img src={comment.user.url} alt="" 
-            className="rounded-lg"/>
+            className="rounded-lg w-full min-h-16"/>
             </div>
             <div className='bg-zinc-700 rounded-lg w-11/12 mt-2 p-6'>
                 <div>

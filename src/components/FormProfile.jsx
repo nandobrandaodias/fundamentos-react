@@ -1,21 +1,31 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-export default function FormProfileCard({ user }) {
-  const [name, setName] = useState();
-  const [role, setRole] = useState();
-  const [urlImage, setUrlImage] = useState();
-  const [description, setDescription] = useState();
+import { Link, useNavigate } from "react-router-dom";
+export default function FormProfileCard() {
+  const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  const [name, setName] = useState(user?.name ?? '');
+  const [role, setRole] = useState(user?.role ?? '');
+  const [urlImage, setUrlImage] = useState(user?.url ?? '');
+  const [description, setDescription] = useState(user?.description ?? '');
 
   function selectImage(i){
       setUrlImage(i)
   }
 
-  if (user) {
-      setName(user?.name);
-      setRole(user?.role);
-      setDescription(user?.description);
+  function updateUser(){
+    const updatedUser = {
+      name,
+      role,
+      url: urlImage,
+      description
+    }
+    
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+    navigate('/profile')
   }
+
 
   return (
     <section className="container py-4">
@@ -52,10 +62,10 @@ export default function FormProfileCard({ user }) {
             <div className="mt-1 flex gap-x-4">
               <img src={urlImage} alt="" className="w-2/12 bg-white rounded-lg min-h-40" />
               <input
-                type="file"
+                type="text"
                 name="urlImage"
                 id="urlImage"
-                placeholder="Digite seu Nome..."
+                placeholder="Digite a Url da Imagem..."
                 className="bg-zinc-950 border-2 border-green-400 rounded text-white
                 focus:border-green-400 focus:outline-none px-3 py-2 w-10/12 h-min"
                 onChange={(e) => selectImage(e.target.value)}
@@ -128,7 +138,7 @@ export default function FormProfileCard({ user }) {
           <button
             className="bg-green-700 py-3 px-5 rounded w-full font-bold
           hover:bg-green-900"
-            type="submit"
+            type="submit" onClick={updateUser}
           >
             Salvar
           </button>

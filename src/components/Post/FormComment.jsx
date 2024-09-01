@@ -2,14 +2,13 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 export default function FormComment({ addComment }) {
-  const [idx, setId] = useState(1);
+  const user = JSON.parse(localStorage.getItem('user'));
   const [textInput, setTextInput] = useState("");
 
   function newComment(e) {
     e.preventDefault()
     if (!textInput) return;
-    let comment = { id: idx, text: textInput };
-    setId(idx + 1);
+    let comment = { text: textInput, user };
     setTextInput("");
     addComment(comment);
   }

@@ -11,3 +11,6 @@ function App() {
 }
 
 export default App;
+
+// Criação de Post
+// Armazenar Posts no LocalStorage
