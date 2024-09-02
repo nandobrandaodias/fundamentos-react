@@ -1,6 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/hxh.png";
 
 export default function Header() {
+  const navigate = useNavigate();
+
+  function logout() {
+    localStorage.removeItem("token");
+    navigate("/");
+  }
+
   return (
     <nav className="bg-zinc-800 w-full">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -45,17 +53,19 @@ export default function Header() {
             </button>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex flex-shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company"
-              />
+            <div className="flex flex-shrink-0 items-center align-middle">
+              <Link to="/home">
+                <img
+                  className="h-16 w-auto block mx-auto"
+                  src={logo}
+                  alt="Your Company"
+                />
+              </Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 h-full items-center">
                 <Link
-                  to="/"
+                  to="/home"
                   className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white"
                 >
                   Home
@@ -71,6 +81,13 @@ export default function Header() {
                   className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white"
                 >
                   Criação de Post
+                </Link>
+
+                <Link
+                  onClick={logout}
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white"
+                >
+                  Sair
                 </Link>
               </div>
             </div>

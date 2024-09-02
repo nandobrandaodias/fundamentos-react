@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 export default function FormComment({ addComment }) {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('token'));
   const [textInput, setTextInput] = useState("");
 
   function newComment(e) {

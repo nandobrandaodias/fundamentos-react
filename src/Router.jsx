@@ -1,21 +1,50 @@
-import { Routes, Route } from "react-router-dom"
-// import GuardedRouter from "./GuardedRouter"
+import { createBrowserRouter } from "react-router-dom"
 import Home from './components/Home'
 import Profile from './components/Profile'
 import FormProfile from "./components/FormProfile"
 import FormPost from "./components/FormPost"
-import DefaultLayout from "./layouts/DefaultLayout"
+import Login from "./components/Login"
+import { ProtectedRoute } from "./ProtectedRoute"
 
-export default function Router(){
-    return(
-    <Routes>
-        <Route path="/" element={<DefaultLayout />}>
-            <Route path="/" element={<Home/>} />
-            {/* <GuardedRouter path='/profile' component={<ProfileCardPage/>} auth={false} /> */}
-            <Route path="/profile" element={<Profile/>} />
-            <Route path="/profile/edit" element={<FormProfile/>} />
-            <Route path="/posts/create" element={<FormPost/>} />
-        </Route>
-    </Routes>
-    )
+const getAccessToken = ()=>{
+    return localStorage.getItem("token")
 }
+export const isAuthenticated = ()=>{
+    return getAccessToken()
+}
+
+
+export const router =  createBrowserRouter(
+    [
+        {
+            path: '/',
+            element: <Login />,
+            index: true
+        },
+        {
+            element: <ProtectedRoute isAuthenticated={isAuthenticated()}/>,
+            children:[
+                {
+                    path: '/home',
+                    element: <Home />
+                },
+                {
+                    path: '/profile',
+                    element: <Profile />
+                },
+                {
+                    path: '/profile/edit',
+                    element: <FormProfile />
+                },
+                {
+                    path: '/posts/create',
+                    element: <FormPost />
+                },
+            ]
+        },
+        {
+            path: '*',
+            redirect: '/'
+        }
+    ]
+)

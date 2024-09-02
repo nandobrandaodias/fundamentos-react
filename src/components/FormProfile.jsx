@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 export default function FormProfileCard() {
   const navigate = useNavigate()
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('token'))
 
   const [name, setName] = useState(user?.name ?? '');
   const [role, setRole] = useState(user?.role ?? '');
@@ -22,7 +22,7 @@ export default function FormProfileCard() {
       description
     }
     
-    localStorage.setItem('user', JSON.stringify(updatedUser));
+    localStorage.setItem('token', JSON.stringify(updatedUser));
     navigate('/profile')
   }
 

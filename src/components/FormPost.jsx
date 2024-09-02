@@ -5,7 +5,7 @@ import Post from "./Post/Post";
 
 export default function FormPost() {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem('token'));
   const [content, setContent] = useState("")
   const [previewPost, setPreviewPost] = useState();
 

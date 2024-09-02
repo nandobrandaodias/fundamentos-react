@@ -1,16 +1,11 @@
-import { BrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import {router} from "./Router";
 import "./App.css";
-import Router from "./Router";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   );
 }
 
 export default App;
-
-// Criação de Post
-// Armazenar Posts no LocalStorage

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function ProfileCardPage() {
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('token'))
 
   return (
     <>
