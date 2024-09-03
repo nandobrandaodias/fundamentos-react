@@ -18,7 +18,7 @@ export default function Login() {
     if (email !== "killua@hxh.com" || password !== "senha123") {
       setError(
         <p className="text-center py-2 mt-6 bg-red-500 border-2 border-red-600 rounded-lg">
-          E-mail ou senhas incorretos!
+          E-mail ou senha incorretos!
         </p>
       );
       return;
@@ -33,8 +33,7 @@ export default function Login() {
         description: "Um desenvolvedor que tem uma licença Hunter!",
       })
     );
-
-    navigate("/home");
+    navRef.current("/home");
   }
 
   return (
