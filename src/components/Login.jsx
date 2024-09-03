@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/hxh.png'
 
@@ -7,12 +7,15 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  let navRef = useRef(navigate)
 
-  if (localStorage.getItem("token")) navigate("/home");
+  useEffect(()=>{
+    if(localStorage.getItem("token")) navRef.current('/home')
+  })
 
   function login(e) {
     e.preventDefault();
-    if (email != "killua@hxh.com" && password != "senha123") {
+    if (email !== "killua@hxh.com" || password !== "senha123") {
       setError(
         <p className="text-center py-2 mt-6 bg-red-500 border-2 border-red-600 rounded-lg">
           E-mail ou senhas incorretos!
